@@ -1,24 +1,46 @@
-# README
+# Models
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+-[] Blog
+-[] User
+-[] Comment
 
-Things you may want to cover:
+# Controllers
 
-* Ruby version
+-[] Blogs
+resources
+-[] Users
+resources
+-[] Comments
+resources: only: [:create, :destroy]
+Serializer
+-[] Users
 
-* System dependencies
+# Routes
 
-* Configuration
+-[] Blogs full CRUD
 
-* Database creation
+-[] Users full CRUD
 
-* Database initialization
+-[] Comments create/destroy
 
-* How to run the test suite
+# Schema
+-[x] User Table
 
-* Services (job queues, cache servers, search engines, etc.)
+    username:string
+    password_digest:string
+    bio:text
+    img:string
 
-* Deployment instructions
+-[x] Blog Table
 
-* ...
+    title:string
+    content:text
+    user:references
+    img:string
+
+-[] Comment Table
+
+    content:string
+    user:references
+    blog:references
+    t.references :commentable, polymorphic: true
