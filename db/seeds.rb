@@ -5,7 +5,7 @@ User.destroy_all
 puts "🤖 Making Kais"
 
 5.times do 
-    User.create(username:Faker::Books::Dune.character, password:"ABC", bio:Faker::Books::Dune.saying, img:"https://robohash.org/adfasdf/#{rand(1000) + rand(1000)}" )
+    User.create(username:Faker::Books::Dune.character, password:"ABC", bio:Faker::Books::Lovecraft.paragraph, img:"https://robohash.org/adfasdf/#{rand(1000) + rand(1000)}")
 end
 
 puts "✍🏻 Writing Blogs"
