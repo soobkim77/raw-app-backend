@@ -1,8 +1,22 @@
 # Models
 
 -[] Blog
+
 -[] User
+_ validates uniqueness
+_ has secure password
+
 -[] Comment
+
+# Serializers
+
+-[] User
+*username
+*bio
+\*image - Blogs
+-imgs
+-content
+-blog's comments
 
 # Controllers
 
@@ -10,8 +24,7 @@
 resources
 
 -[] Users
-resources
--[] serializer
+
 -[] sessions controller
 
 -[] Comments
