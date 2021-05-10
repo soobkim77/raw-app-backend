@@ -8,10 +8,15 @@
 
 -[] Blogs
 resources
+
 -[] Users
 resources
+-[] serializer
+-[] sessions controller
+
 -[] Comments
 resources: only: [:create, :destroy]
+
 Serializer
 -[] Users
 
@@ -24,6 +29,7 @@ Serializer
 -[] Comments create/destroy
 
 # Schema
+
 -[x] User Table
 
     username:string
@@ -38,9 +44,7 @@ Serializer
     user:references
     img:string
 
--[] Comment Table
-
-    content:string
-    user:references
-    blog:references
-    t.references :commentable, polymorphic: true
+-[x] Comment Table
+content:string
+user:references
+blog:references
