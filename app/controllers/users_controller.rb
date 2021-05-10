@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.create(user_params) #default bio/ img? 
+        # binding.pry
         if @user.valid?
-            binding.pry
             render json: {login: true}, status: :created
         else
             render json: {message: "You fucked up."}, status: :not_acceptable
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :bio, :img)
+        params.require(:user).permit(:username, :password)
     end
     
 end
