@@ -3,4 +3,5 @@ class Blog < ApplicationRecord
   has_many :comments
     validates :title, uniqueness: { scope: :user,
     message: "You already have a blog with that title!" } 
+    validates :title, :content,  presence: true
 end

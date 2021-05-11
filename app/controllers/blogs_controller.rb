@@ -27,9 +27,8 @@ class BlogsController < ApplicationController
     end
 
     def destroy
-        binding.pry
         if @blog.destroy
-            render json: {message: "Blog successfully deleted."}, status: :im_used
+            render json: {message: "Blog successfully deleted."}, status: :ok
         else 
             render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
         end
