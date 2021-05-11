@@ -1,6 +1,12 @@
 class BlogsController < ApplicationController
     before_action :find_blog, only: [:update, :destroy]
 
+    def index
+        byebug
+        @blogs = Blog.all
+        render json: {blogs: @blogs}, status: :accepted
+    end
+
     def create 
         @blog = Blog.new(blog_params) 
         @blog.user = @@user
@@ -39,4 +45,5 @@ class BlogsController < ApplicationController
     end
 
     # might have to do a default value for our image
+
 end
