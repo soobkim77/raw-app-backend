@@ -5,7 +5,11 @@ class ApplicationController < ActionController::API
         JWT.encode(payload, ENV["SUPER_SECRET_KEY"])
     end
 
-    def decode_token(token)
+    def auth_header
+        request.headers['Authorization']
+    end
+
+    def decode_token
         if auth_header
             token = auth_header.split(' ')[1]
             begin
@@ -18,8 +22,8 @@ class ApplicationController < ActionController::API
 
     def current_user
         if decode_token
-            user_id = decoded_token[0]['user_id']
-            @user = User.find_by(id: user_id)
+            user_id = decode_token[0]['user_id']
+            @@user = User.find_by(id: user_id)
         end
     end
 
@@ -28,7 +32,7 @@ class ApplicationController < ActionController::API
     end 
 
     def authorized
-        render json: {message: "Please log in "}, status: :unauthorized unless logged_in?            
+        render json: {message: "Please log in "}, status: :unauthorized unless logged_in?   
     end
     
 end
