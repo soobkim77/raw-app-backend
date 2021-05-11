@@ -1,11 +1,29 @@
+# Todo
+Soob:
+Blogs:
+-[] index
+-[] show
+
+-[] 
+-[] 
+
+Roman: 
+Blog:
+-[x] create
+-[x] edit
+
+Components:
+-[] Form for creating/ Editing a Blog
+-[] 
+
+
+
 # Models
 
 -[] Blog
-
 -[] User
 _ validates uniqueness
 _ has secure password
-
 -[] Comment
 
 # Serializers
@@ -37,9 +55,22 @@ Serializer
 
 -[] Blogs full CRUD
 
--[] Users full CRUD
+    index /blogs 
+    show blog/:id
 
--[] Comments create/destroy
+    edit 
+    create 
+
+    delete
+
+-[] Users full CRUD
+    blogs -serializing the data 
+
+-[] Comments create/destroy 
+    edit
+    new
+    create
+    delete
 
 # Schema
 
