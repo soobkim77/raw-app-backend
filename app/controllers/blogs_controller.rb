@@ -1,9 +1,49 @@
 class BlogsController < ApplicationController
-    # skip_before_action :authorized
+    before_action :find_blog, only: [:update, :destroy]
+
     def index
         byebug
         @blogs = Blog.all
         render json: {blogs: @blogs}, status: :accepted
     end
+
+    def create 
+        @blog = Blog.new(blog_params) 
+        @blog.user = @@user
+        @blog.save
+        if @blog.valid?
+            render json: {blog: @blog}, status: :ok
+        else
+            render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
+        end
+    end
+
+    def update
+        if @blog.update(blog_params)
+                render json: {blog: @blog}, status: :ok
+        else
+            render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
+        end
+    end
+
+    def destroy
+        binding.pry
+        if @blog.destroy
+            render json: {message: "Blog successfully deleted."}, status: :im_used
+        else 
+            render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
+        end
+    end
+
+    private
+    def find_blog
+        @blog = Blog.find_by(id: params[:id])
+    end
+
+    def blog_params
+        params.require(:blog).permit(:title, :content, :img)
+    end
+
+    # might have to do a default value for our image
 
 end
