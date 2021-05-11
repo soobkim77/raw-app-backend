@@ -4,4 +4,5 @@ class BlogSerializer
   attributes :user do |obj|
     "#{obj.user.username}"
   end
+  
 end
