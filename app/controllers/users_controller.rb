@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.create(user_params) #default bio/ img? 
-        # binding.pry
         if @user.valid?
             render json: {login: true}, status: :created
         else
