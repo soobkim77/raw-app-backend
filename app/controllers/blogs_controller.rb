@@ -7,6 +7,12 @@ class BlogsController < ApplicationController
         render json: {blogs: @blogs}, status: :accepted
     end
 
+    def show
+        @blog = Blog.find_by(id: params[:id])
+        render json: {blog: @blog}, status: :accepted
+    end
+    
+
     def create 
         @blog = Blog.new(blog_params) 
         @blog.user = @@user
