@@ -2,7 +2,6 @@ class BlogsController < ApplicationController
     before_action :find_blog, only: [:update, :destroy]
 
     def index
-        byebug
         @blogs = Blog.all
         render json: {blogs: @blogs}, status: :accepted
     end
