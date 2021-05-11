@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-    before_action :find_blog, only: [:update]
+    before_action :find_blog, only: [:update, :destroy]
 
     def create 
         @blog = Blog.new(blog_params) 
@@ -16,6 +16,15 @@ class BlogsController < ApplicationController
         if @blog.update(blog_params)
                 render json: {blog: @blog}, status: :ok
         else
+            render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
+        end
+    end
+
+    def destroy
+        binding.pry
+        if @blog.destroy
+            render json: {message: "Blog successfully deleted."}, status: :im_used
+        else 
             render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
         end
     end
