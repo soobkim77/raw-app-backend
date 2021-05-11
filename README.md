@@ -17,9 +17,7 @@ Components:
 -[] 
 
 
-
 # Models
-
 -[] Blog
 -[] User
 _ validates uniqueness
