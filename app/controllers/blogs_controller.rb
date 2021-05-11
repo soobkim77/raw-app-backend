@@ -9,16 +9,14 @@ class BlogsController < ApplicationController
     def show
         @blog = Blog.find_by(id: params[:id])
         render json: BlogSerializer.new(@blog), status: :accepted
-
     end
     
-
     def create 
         @blog = Blog.new(blog_params) 
         @blog.user = @@user
         @blog.save
         if @blog.valid?
-            render json: {blog: @blog}, status: :ok
+            render json: BlogSerializer.new(@blog), status: :ok
         else
             render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
         end
@@ -26,7 +24,7 @@ class BlogsController < ApplicationController
 
     def update
         if @blog.update(blog_params)
-                render json: {blog: @blog}, status: :ok
+            render json: BlogSerializer.new(@blog), status: :ok
         else
             render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
         end
@@ -41,6 +39,7 @@ class BlogsController < ApplicationController
     end
 
     private
+    
     def find_blog
         @blog = Blog.find_by(id: params[:id])
     end
