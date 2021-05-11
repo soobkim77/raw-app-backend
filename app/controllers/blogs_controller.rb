@@ -2,14 +2,14 @@ class BlogsController < ApplicationController
     before_action :find_blog, only: [:update, :destroy]
 
     def index
-        byebug
         @blogs = Blog.all
-        render json: {blogs: @blogs}, status: :accepted
+        render json: BlogSerializer.new(@blogs), status: :accepted
     end
 
     def show
         @blog = Blog.find_by(id: params[:id])
-        render json: {blog: @blog}, status: :accepted
+        render json: BlogSerializer.new(@blog), status: :accepted
+
     end
     
 
