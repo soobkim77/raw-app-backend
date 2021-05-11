@@ -9,8 +9,8 @@ Blogs:
 
 Roman: 
 Blog:
--[] create
--[] edit
+-[x] create
+-[x] edit
 
 Components:
 -[] Form for creating/ Editing a Blog

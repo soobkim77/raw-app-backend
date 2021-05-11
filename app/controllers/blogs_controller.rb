@@ -1,19 +1,30 @@
 class BlogsController < ApplicationController
-    # before_action :add_user, only: [:create]
+    before_action :find_blog, only: [:update]
 
-      def create 
+    def create 
         @blog = Blog.new(blog_params) 
         @blog.user = @@user
         @blog.save
         if @blog.valid?
             render json: {blog: @blog}, status: :ok
         else
-            render json: {message: "You fucked up."}, status: :not_acceptable
+            render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
         end
     end
 
+    def update
+        if @blog.update(blog_params)
+                render json: {blog: @blog}, status: :ok
+        else
+            render json: {message: "You fucked up.", errors: @blog.errors}, status: :not_acceptable
+        end
+    end
 
     private
+    def find_blog
+        @blog = Blog.find_by(id: params[:id])
+    end
+
     def blog_params
         params.require(:blog).permit(:title, :content, :img)
     end
