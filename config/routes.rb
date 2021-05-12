@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:create]
   resources :blogs
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
 end

@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
     def index
         @blogs = Blog.all
-        render json: BlogSerializer.new(@blogs, include: [:comments]), status: :accepted
+        render json: BlogSerializer.new(@blogs), status: :accepted
     end
 
     def show
