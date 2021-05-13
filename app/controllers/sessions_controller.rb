@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(username: session_params[:username])
         if @user && @user.authenticate(session_params[:password])
             @token = encode_token({user_id: @user.id})
-            render json: {user: UserSerializer.new(@user), jwt: @token}, status: :accepted
+            render json: {user: UserSerializer.new(@user), jwt: @token, login: true}, status: :accepted
         end
     end
 

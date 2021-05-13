@@ -20,5 +20,16 @@ puts "📝 Making Comments"
 Comment.create(content:Faker::Books::Dune.quote, user_id:User.all.sample.id, blog_id:Blog.all.sample.id)
 end
 
+puts "👍🏻 Generating Likes"
+
+def c_or_b 
+
+end
+
+
+50.times do 
+Likes.create(user:User.all.sample, likeable_id:Blog.all.sample, likeable_type: :Blog)
+end
+
 puts "🌱🌱🌱 Seeding done 🌱🌱🌱"
 puts " VSCODE is Racist 🤷🏾 "
