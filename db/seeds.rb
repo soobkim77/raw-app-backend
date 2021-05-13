@@ -1,3 +1,4 @@
+Like.destroy_all
 Comment.destroy_all
 Blog.destroy_all
 User.destroy_all
