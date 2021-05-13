@@ -7,6 +7,7 @@ class LikesController < ApplicationController
         @like.user = @@user
         if @like.valid?
             @like.save
+            render json: {yo: "yo"}
         else
             render json: {message: "You've already liked this post.", errors: @like.errors}, status: :not_acceptable
         end
