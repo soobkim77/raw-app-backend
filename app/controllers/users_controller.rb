@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :authorized
 
+
     def create 
         @user = User.create(user_params) #default bio/ img? 
         if @user.valid?
@@ -10,6 +11,13 @@ class UsersController < ApplicationController
         end
     end
 
+    def index
+        if current_user
+        render json: UserSerializer.new(@@user), status: :accepted
+        end
+    end
+    
+   
     private
 
     def user_params
