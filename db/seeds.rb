@@ -11,13 +11,20 @@ end
 
 puts "✍🏻 Writing Blogs"
 
+blog_content = ""
+50.times do
+    blog_content << Faker::Fantasy::Tolkien.poem + " "
+    blog_content << Faker::Quotes::Shakespeare.hamlet_quote + " "
+end 
+
+
 25.times do 
-    Blog.create(title: Faker::Books::Dune.title, content: Faker::Books::Lovecraft.paragraph, user_id: User.all.sample.id, img:"https://picsum.photos/seed/#{rand(1000) + rand(1000)}/600/600" )
+    Blog.create(title: Faker::Movies::Hobbit.quote, content: blog_content, user_id: User.all.sample.id, img:"https://picsum.photos/seed/#{rand(1000) + rand(1000)}/600/600" )
 end
 
 puts "📝 Making Comments"
 
-50.times do 
+500.times do 
 Comment.create(content:Faker::Books::Dune.quote, user_id:User.all.sample.id, blog_id:Blog.all.sample.id)
 end
 
@@ -28,10 +35,9 @@ def c_or_b
 end
 
 
-75.times do 
+2000.times do 
 Like.create(user:User.all.sample, likeable_id:c_or_b, likeable_type: %w(Blog Comment).sample)
 end
-
 
 puts "🌱🌱🌱 Seeding done 🌱🌱🌱"
 puts " VSCODE is Racist 🤷🏾 "
